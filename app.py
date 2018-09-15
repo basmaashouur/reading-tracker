@@ -4,7 +4,7 @@ from flask import request, redirect, flash, jsonify, make_response
 from sqlalchemy import create_engine, asc, desc
 from sqlalchemy.orm import sessionmaker
 from model import *
-import os
+import os, sys
 import random
 import string
 import datetime
@@ -32,17 +32,26 @@ def showHome():
 @app.route('/readings/', methods=['GET', 'POST'])
 def showReadings():
     if request.method == 'POST':
-        newreadings = Readings(title=request.form['name'], img=request.form['img-link'],
+        # get the java script var which contains al tags
+        #tags =  request.get_json(force=False)
+        # format tags because  It comes out as a dictionary
+        #tagsFormat = format(tags)
+    
+        # add all the new tags in the database
+        #newtags = Tags(title=request.form['tag'],created_at=datetime.datetime.now())
+        #session.add(newtags)
+
+        # add the new readings in the database
+        newreadings = Readings(title=request.form['nameR'], img=request.form['img-link'],
          description=request.form['desc'], created_at=datetime.datetime.now())
-        newtag = Tags(title=request.form['tag'],created_at=datetime.datetime.now())
         session.add(newreadings)
-        session.add(newtag)
+
         session.commit()
         return redirect(url_for('showHome'))
     else:
-        alltags = session.query(Tags.title)
-        data = ["basma", "ashour","zomrawy","ali"]
-        return render_template("readings.html", dataPy = json.dumps(alltags))
+        #sendTags = [r[0] for r in session.query(Tags.title)]
+        sendTags =["Science", "Math"]
+        return render_template("readings.html", dataPy = json.dumps(sendTags))
 
 
 # ToRead page, show all the toread 

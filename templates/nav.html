@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reading Tracker</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo.webp') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -22,6 +21,7 @@
 ===========================================-->
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
      <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -37,16 +37,19 @@
                    Navbar
 ===========================================-->
 
-  <nav class="nav-extended cyan darken-4">
-  <div class="nav-wrapper">
-      <a href="" class="brand-logo grey-text ">Reading Controller</a>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper cyan darken-4">
+
+      <a href="" class="brand-logo grey-text ">Reading Tracker</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="{{url_for('showHome')}}"><i class="material-icons grey-text">home</i></a></li>
         <li><a href="{{url_for('showReadings')}}"><i class="material-icons grey-text">book</i></a></li>
         <li><a href="{{url_for('showToRead')}}"><i class="material-icons grey-text">notifications</i></a></li>
       </ul>
     </div>
-  </nav>
+    </nav>
+  </div>
 
 
          

@@ -21,18 +21,17 @@
                             <form class="col s12 ">
                                 <div class="row">
                                     <div class="row">
-                                        <div class="input-field col s6">
-                                            <input id="name" type="text" name="name" class="validate grey-text" required="" aria-required="true">
+                                        <div class="input-field col s12">
+                                            <input id="name" type="text" name="nameR" class="validate grey-text" required="" aria-required="true">
                                             <label for="name">Name</label>
                                         </div>
 
-                                            <div class="input-field col s6">
-                                                <input type="text" id="autocomplete-input" name="tag" class="autocomplete grey-text">
-                                                <label for="autocomplete-input">Tag</label>
-                                            </div>
-                                       
-
                                     </div>
+  <div class="chips chips-autocomplete" id="chips">
+    <input class="grey-text">
+  </div>
+
+
                                     <div class="input-field col s12">
                                         <input id="img-link" type="text" name="img-link" class="validate grey-text">
                                         <label for="img-link">Image Link</label>
@@ -47,7 +46,7 @@
                     </div>
                     <!-- BUTTONS -->
                     <div class="card-action">
-                        <input type='submit' class="grey-text btn cyan darken-4" value="Add">
+                        <input type='submit' class="grey-text btn cyan darken-4" id="add-tags" value="Add">
                     </div>
                 </div>
             </div>
@@ -56,16 +55,37 @@
 </form>
 
 <script type="text/javascript">
-  var dataJson = {{ dataPy | tojson | safe}};
-  var data = JSON.parse(dataJson);
-  var obj = {};
-for (var i=0; i<data.length; i++) {
-  obj[data[i]] = null;
-}
-console.log(data.length);
-     $(document).ready(function(){
-        $('input.autocomplete').autocomplete({
-          data: obj,
-        });
-      });
+    // get all the tags from flask so I can make recommend, cam as JSON
+    var dataJson = {{ dataPy | tojson | safe}};
+    // convert Json to JS var
+      var datajs = JSON.parse(dataJson);
+      // convert the JS var to obj so I can eb able to give to materialize chips
+      var obj = {};
+    for (var i=0; i<datajs.length; i++) {
+      obj[datajs[i]] = null;
+    }
+    // materialize chip s function
+     $('.chips-autocomplete').chips({
+     	    placeholder: 'Enter a tag',
+    secondaryPlaceholder: '+Tag',
+    autocompleteOptions: {
+      data: obj,
+    }
+  });
+// Function to handle the form and send all tags which
+// is in the form of chips to flask 
+$('#add-tags').click(function(){
+    // convert all chips to json form
+var tags = JSON.stringify(M.Chips.getInstance($('.chips')).chipsData);
+// send the tags to flask
+$.ajax({
+          type: "POST",
+          contentType: "application/json;charset=utf-8",
+          url: "/readings/",
+          traditional: "true",
+          data: JSON.stringify({tags}),
+          dataType: "json"
+          });
+});
+     
 </script>
