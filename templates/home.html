@@ -1,18 +1,48 @@
 {% include "nav.html" %}
 
- <div class="cont"> <h3> All Readings</h3></div>
-
 {% for i in allReadings %}
-  <div class="divider"></div>
-<div class="row">
-<div class="col s12 cont">
-
-<h4>{{i.title}}</h4>
-<img src={{i.img}} class="imgs">
-<h5>{{i.description}}</h5>
-<a href="/edit/{{i.id}}/"  class="btn cyan darken-4">Edit</a>
-<a href="/delete/{{i.id}}/"  class="btn cyan darken-4">Delete</a>
-</div>
-</div>
-{% endfor %}
-  	<br> <br><br><br> <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-14">
+                    <!-- DETAILS -->
+                    <div id="about-card" class="card grey darken-4">
+                    	
+                        <div class="card-content">
+                            <!-- ABOUT PARAGRAPH -->
+                            <div class="grey-text">
+                                <h4> A All Readings </h4>
+                            </div>
+                            <div class="row">
+                                <form class="col s12 ">
+                                    <div class="row">
+                                        <div class="row">
+                                            <h6>{{i.title}}</h6>
+                                        </div>
+                                           <div class="row">
+                                            <img src={{i.img}} class="imgs">
+                                        </div>
+                                           <div class="row">
+                                           <h6>{{i.description}}</h6>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- BUTTONS -->
+                        <div class="card-action">
+               <a href="/edit/{{i.id}}/"  class="btn cyan darken-4">Edit</a>
+               <a href="/delete/{{i.id}}/"  class="btn cyan darken-4">Delete</a>
+{% if i.to_read == True %}
+    <a href="/toread/{{i.id}}/"  class="btn cyan darken-4">Show To-Read</a>
+{% else %}
+    <a href="/addtoread/{{i.id}}/"  class="btn cyan darken-4">Add To-Read</a>
+    {% endif %}
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+         {% endfor %}
+         <br> <br><br><br> <br><br>

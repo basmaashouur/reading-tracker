@@ -1,0 +1,38 @@
+{% include "nav.html" %}
+
+<body>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <!-- Form to add a new reading -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-14">
+                <!-- DETAILS -->
+                <div id="about-card" class="card grey darken-4">
+                    <div class="card-content">
+                        <!-- ABOUT PARAGRAPH -->
+                        <div class="grey-text">
+                            <h4>  {{reading.title}}</h4>
+                        </div>
+                        <div class="row">
+                            <p>{{reading.title}}</p>
+                        </div>
+                        <div class="row">
+                            <p>{{reading.description}}</p>
+                        </div>
+                        <div class="row">
+                            <p>{{toRead.reading_time}} Minutes</p>
+                        </div>
+                    </div>
+                    <!-- BUTTONS -->
+                    <div class="card-action">
+                        <a href="/edittoread/{{reading.id}}/" class="btn cyan darken-4">Edit</a>
+                        <a href="/deletetoread/{{toRead.id}}/{{reading.id}}/" class="btn cyan darken-4">Delete</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

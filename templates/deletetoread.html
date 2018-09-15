@@ -6,7 +6,7 @@
     <div class="row"></div>
     <div class="row"></div>
     <!-- Form to add a new reading -->
-    <form action="/delete/{{id}}/" method='POST'>
+    <form action="/deletetoread/{{id}}/{{readingid}}/" method='POST'>
         <div class="container">
             <div class="row">
                 <!-- DETAILS -->
@@ -14,13 +14,13 @@
                     <div class="card-content">
                         <!-- ABOUT PARAGRAPH -->
                         <div class="grey-text">
-                            <h4> Delete {{deleteReadings.title}}</h4>
+                            <h4> Delete To-Read</h4>
                         </div>
                     </div>
                     <!-- BUTTONS -->
                     <div class="card-action">
                         <input type='submit' class=" btn red" id="add-tags" value="Delete">
-                        <a href="/home/" class="btn cyan darken-4">Cancel</a>
+                        <a href="/toread/{{readingid}}/" class="btn cyan darken-4">Cancel</a>
                     </div>
                 </div>
             </div>

@@ -25,6 +25,7 @@ class Readings(Base):
     img = Column(String(400), nullable=True)
     description = Column(String(600), nullable=True)
     created_at = Column(DateTime, nullable=True)
+    to_read = Column(Boolean, unique=False, default=False)
 
 
 class ReadingsTags(Base):
@@ -40,12 +41,10 @@ class ToRead(Base):
 
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, nullable=False)
-    title = Column(String(200), nullable=False)
     reading_time = Column(Integer)
     finished = Column(Boolean, unique=False, default=False)
-    dismissed = Column(Boolean, unique=False, default=False)
-    #readings_id = Column(Integer, ForeignKey('readings.id'))
-    #readings = relationship(TypeName, backref="toRead")
+    readings_id = Column(Integer, ForeignKey('readings.id'))
+    readings = relationship(Readings, backref="toRead")
 
 engine = create_engine('sqlite:///rctrl.db')
 

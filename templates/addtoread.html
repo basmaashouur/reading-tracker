@@ -1,0 +1,39 @@
+{% include "nav.html" %}
+
+<body>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <!-- Form to add a new reading -->
+    <form action="/addtoread/{{id}}/" method='POST'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-14">
+                    <!-- DETAILS -->
+                    <div id="about-card" class="card grey darken-4">
+                        <div class="card-content">
+                            <!-- ABOUT PARAGRAPH -->
+                            <div class="grey-text">
+                                <h4> Add {{readings.title}} To to-read</h4>
+                            </div>
+                            <div class="row">
+
+                                <div class="input-field col s12">
+                                    <input id="time" type="text" name="time" class="validate grey-text">
+                                    <label for="time">Time for reading in minutes</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BUTTONS -->
+                        <div class="card-action">
+                            <input type='submit' class="btn cyan darken-4" id="add-tags" value="Add">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+

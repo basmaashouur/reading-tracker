@@ -1,1 +1,40 @@
 {% include "nav.html" %}
+
+{% for i in allToRead %}
+       <div class="container">
+            <div class="row">
+                <div class="col-md-14">
+                    <!-- DETAILS -->
+                    <div id="about-card" class="card grey darken-4">
+                    	
+                        <div class="card-content">
+                            <!-- ABOUT PARAGRAPH -->
+                            <div class="grey-text">
+                                <h4> All To-Read </h4>
+                            </div>
+                            <div class="row">
+                                <form class="col s12 ">
+                                    <div class="row">
+                                        <div class="row">
+                                            <h6>{{i.reading_time}}</h6>
+                                        </div>
+                                           <div class="row">
+                                            <h6>{{i.reading_time}} Minutes</h6>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- BUTTONS -->
+                        <div class="card-action">
+                           <a href="/edittoread/{{i.id}}/"  class="btn cyan darken-4">Edit</a>
+                           <a href="/deletetoread/{{i.id}}/"  class="btn cyan darken-4">Delete</a>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+           {% endfor %}
+         <br> <br><br><br> <br><br>

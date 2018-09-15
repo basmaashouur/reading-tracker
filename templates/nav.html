@@ -7,7 +7,6 @@
     <title>Reading Tracker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
     <!--==========================================
                    StyleSheets
 ===========================================-->
@@ -23,11 +22,11 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-     <!-- Angular -->
+    <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- materialize JavaScript -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/site.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/site.js') }}"></script>
 
 </head>
 
@@ -37,32 +36,27 @@
                    Navbar
 ===========================================-->
 
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper cyan darken-4">
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper cyan darken-4">
 
-      <a href="" class="brand-logo grey-text ">Reading Tracker</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="{{url_for('showHome')}}"><i class="material-icons grey-text">home</i></a></li>
-        <li><a href="{{url_for('showReadings')}}"><i class="material-icons grey-text">book</i></a></li>
-        <li><a href="{{url_for('showToRead')}}"><i class="material-icons grey-text">notifications</i></a></li>
-      </ul>
+                <a href="{{url_for('showHome')}}" class="brand-logo grey-text ">Reading Tracker</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{url_for('showHome')}}"><i class="material-icons grey-text">home</i></a></li>
+                    <li><a href="{{url_for('showReadings')}}"><i class="material-icons grey-text">book</i></a></li>
+                    <li><a href="{{url_for('showToRead')}}"><i class="material-icons grey-text">notifications</i></a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-    </nav>
-  </div>
 
     <!--==========================================
                    Footer
 ===========================================-->
 
-<div class="footer">
-  <p>Copyright © 2018 Basma Ashour</p>
-</div>
-
-
-
-         
-
+    <div class="footer">
+        <p>Copyright © 2018 Basma Ashour</p>
+    </div>
 
 </body>
 

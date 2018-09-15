@@ -48,7 +48,6 @@ def showReadings():
         newReadings = Readings(title=request.form['nameR'], img=request.form['img-link'],
          description=request.form['desc'], created_at=datetime.datetime.now())
         session.add(newReadings)
-
         session.commit()
         return redirect(url_for('showHome'))
     else:
@@ -57,7 +56,7 @@ def showReadings():
         return render_template("readings.html", dataPy = json.dumps(sendTags))
 
 
-# Edit reading
+# Edit reading, id is reading id
 @app.route('/edit/<int:id>/', methods=['GET', 'POST'])
 def showToEdit(id):
     editReadings = session.query(Readings).filter_by(id=id).one()
@@ -74,11 +73,14 @@ def showToEdit(id):
     else:
         return render_template("edit.html", id = id, editReadings=editReadings)
 
-# Delete reading
+# Delete reading, id is reading id
 @app.route('/delete/<int:id>/', methods=['GET', 'POST'])
 def showToDelete(id):
     deleteReadings = session.query(Readings).filter_by(id=id).one()
     if request.method == 'POST':
+        if deleteReadings.to_read == True:
+            deletetoread = session.query(ToRead).filter_by(readings_id=id).one()
+            session.delete(deletetoread)
         session.delete(deleteReadings)
         session.commit()
         return redirect(url_for('showHome'))
@@ -88,11 +90,64 @@ def showToDelete(id):
         return render_template("delete.html", id = id, deleteReadings=deleteReadings)
 
 
-# ToRead page, show all the toread 
-@app.route('/toread/')
-def showToRead():
-    return render_template("toread.html")
 
+# Add to read, id is reading id
+@app.route('/addtoread/<int:id>/', methods=['GET', 'POST'])
+def addToRead(id):
+    readings = session.query(Readings).filter_by(id=id).one()
+    if request.method == 'POST':
+        readings.to_read = True;
+        newToRead = ToRead( created_at=datetime.datetime.now(),reading_time = request.form['time'], readings_id = id)
+        session.add(newToRead)
+        session.add(readings)
+        session.commit()
+        return redirect(url_for('showToRead'))
+    else:
+        return render_template("addtoread.html",id = id, readings = readings)
+
+
+
+# Show all to read
+@app.route('/toread/', methods=['GET', 'POST'])
+def showToRead():
+    allToRead = session.query(ToRead).order_by(desc(ToRead.created_at))
+    return render_template("toread.html", allToRead=allToRead)
+
+# Show one to read, id is reading id
+@app.route('/toread/<int:id>/', methods=['GET', 'POST'])
+def showOneToRead(id):
+    toRead = session.query(ToRead).filter_by(readings_id=id).one()
+    reading = session.query(Readings).filter_by(id=id).one()
+    return render_template("onetoread.html", toRead=toRead, reading = reading)
+
+
+# Edit to read, id is reading id
+@app.route('/edittoread/<int:id>/', methods=['GET', 'POST'])
+def editToRead(id):
+    toRead = session.query(ToRead).filter_by(readings_id=id).one()
+    if request.method == 'POST':
+        if request.form['time']:
+            toRead.reading_time = request.form['time']
+        session.add(toRead)
+        session.commit()
+        return redirect(url_for('showOneToRead', id = id))
+    else:
+        return render_template("edittoread.html", id = id, toRead=toRead)
+
+
+# Delete to read
+@app.route('/deletetoread/<int:id>/<int:readingid>/', methods=['GET', 'POST'])
+def deleteToRead(id, readingid):
+    toRead = session.query(ToRead).filter_by(id=id).one()
+    editreading = session.query(Readings).filter_by(id=readingid).one()
+    if request.method == 'POST':
+        editreading.to_read  = False;
+        session.add(editreading)
+        session.delete(toRead)
+        session.commit()
+        return redirect(url_for('showHome'))
+    else:
+        return render_template("deletetoread.html", id = id, readingid=readingid)
 
 
 if __name__ == '__main__':
