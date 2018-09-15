@@ -1,0 +1,29 @@
+{% include "nav.html" %}
+
+
+<body>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <!-- Form to add a new reading -->
+    <form action="/delete/{{id}}/" method='POST'>
+        <div class="container">
+            <div class="row">              
+                    <!-- DETAILS -->
+                    <div id="about-card" class="card grey darken-4">
+                        <div class="card-content">
+                            <!-- ABOUT PARAGRAPH -->
+                            <div class="grey-text">
+                                <h4> Delete {{deleteReadings.title}}</h4>
+                            </div>
+                        </div>
+                        <!-- BUTTONS -->
+                        <div class="card-action">
+                            <input type='submit' class="white-text btn red" id="add-tags" value="Delete">
+                                <a href="/home/"  class="btn cyan darken-4">Cancel</a>
+                        </div>
+                    </div>
+                </div>         
+        </div>
+    </form>
+</body>

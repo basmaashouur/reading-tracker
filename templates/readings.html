@@ -1,58 +1,57 @@
 {% include "nav.html" %}
-<div class="row"></div>
-<div class="row"></div>
-<div class="row"></div>
 
-<!-- Form to add a new reading -->
-<form action="/readings/" method='POST'>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-14">
-                <!-- DETAILS -->
-
-                <div id="about-card" class="card grey darken-4">
-                    <div class="card-content">
-                        <!-- ABOUT PARAGRAPH -->
-                        <div class="grey-text">
-                            <h4> Something To Read</h4>
-                        </div>
-                        <div class="row">
-                            <form class="col s12 ">
-                                <div class="row">
+<body>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <!-- Form to add a new reading -->
+    <form action="/readings/" method='POST'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-14">
+                    <!-- DETAILS -->
+                    <div id="about-card" class="card grey darken-4">
+                        <div class="card-content">
+                            <!-- ABOUT PARAGRAPH -->
+                            <div class="grey-text">
+                                <h4> Something To Read</h4>
+                            </div>
+                            <div class="row">
+                                <form class="col s12 ">
                                     <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="name" type="text" name="nameR" class="validate grey-text" required="" aria-required="true">
-                                            <label for="name">Name</label>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input id="name" type="text" name="nameR" class="validate grey-text" required="" aria-required="true">
+                                                <label for="name">Name</label>
+                                            </div>
                                         </div>
-
+                                        <div class="chips chips-autocomplete" id="chips">
+                                            <input class="grey-text">
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input id="img-link" type="text" name="img-link" class="validate grey-text">
+                                            <label for="img-link">Image Link</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <textarea id="textarea1" name="desc" class="materialize-textarea grey-text"></textarea>
+                                            <label for="textarea1">Description</label>
+                                        </div>
                                     </div>
-  <div class="chips chips-autocomplete" id="chips">
-    <input class="grey-text">
-  </div>
-
-
-                                    <div class="input-field col s12">
-                                        <input id="img-link" type="text" name="img-link" class="validate grey-text">
-                                        <label for="img-link">Image Link</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <textarea id="textarea1" name="desc" class="materialize-textarea grey-text"></textarea>
-                                        <label for="textarea1">Description</label>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <!-- BUTTONS -->
-                    <div class="card-action">
-                        <input type='submit' class="grey-text btn cyan darken-4" id="add-tags" value="Add">
+                        <!-- BUTTONS -->
+                        <div class="card-action">
+                            <input type='submit' class="grey-text btn cyan darken-4" id="add-tags" value="Add">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</body>
+
+
 <script type="text/javascript">
     // get all the tags from flask so I can make recommend, cam as JSON
     var dataJson = {{ dataPy | tojson | safe}};
