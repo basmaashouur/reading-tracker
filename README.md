@@ -1,6 +1,6 @@
-![reading-tracker](imgs/RC.png)
-
 # Reading Tracker
+
+![reading-tracker](imgs/RC.png)
 
 
 An app to track control what you read.
