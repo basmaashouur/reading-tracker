@@ -28,7 +28,7 @@ You can download Reading-Tracker by cloning the [Git Repo](https://github.com/ba
 
 ~ ❯❯❯ cd reading-tracker/
 
-~/reading-tracke ❯❯❯ sudo -H pip3 install -r requirements.txt
+~/reading-tracker ❯❯❯ sudo -H pip3 install -r requirements.txt
 
-~/reading-tracke ❯❯❯ python3 app.py
+~/reading-tracker ❯❯❯ python3 app.py
 ```
