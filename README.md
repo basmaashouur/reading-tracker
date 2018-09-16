@@ -16,3 +16,19 @@ Author: [Basma Ashour](mailto:basmaashouur@gmail.com).
 [![Compatibility](https://img.shields.io/badge/python-3-brightgreen.svg)](https://github.com/basmaashouur/reading-tracker)
 
 ---
+
+## Debian Installation
+
+You can download Reading-Tracker by cloning the [Git Repo](https://github.com/basmaashouur/reading-tracker) and simply installing its requirements:
+
+```
+~ ❯❯❯ sudo apt-get update
+
+~ ❯❯❯ git clone https://github.com/basmaashouur/reading-tracker
+
+~ ❯❯❯ cd reading-tracker/
+
+~/reading-tracke ❯❯❯ sudo -H pip3 install -r requirements.txt
+
+~/reading-tracke ❯❯❯ python3 app.py
+```
