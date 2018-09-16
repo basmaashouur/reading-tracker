@@ -1,40 +1,70 @@
 {% include "nav.html" %}
+<div class="grey-text cont">
+    <h4> To-Read </h4>
+</div>
+{% for i in allToRead %} 
+{% for ii in allReadings %} 
+{% if ii.id == i.readings_id %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-14">
+            <!-- DETAILS -->
+            <div id="about-card" class="card grey darken-4">
 
-{% for i in allToRead %}
-       <div class="container">
-            <div class="row">
-                <div class="col-md-14">
-                    <!-- DETAILS -->
-                    <div id="about-card" class="card grey darken-4">
-                    	
-                        <div class="card-content">
-                            <!-- ABOUT PARAGRAPH -->
-                            <div class="grey-text">
-                                <h4> All To-Read </h4>
-                            </div>
+                <div class="card-content">
+                    <!-- ABOUT PARAGRAPH -->
+
+                    <div class="row">
+                        <form class="col s12 ">
                             <div class="row">
-                                <form class="col s12 ">
-                                    <div class="row">
-                                        <div class="row">
-                                            <h6>{{i.reading_time}}</h6>
-                                        </div>
-                                           <div class="row">
-                                            <h6>{{i.reading_time}} Minutes</h6>
-                                        </div>
-                                        
-                                    </div>
-                                </form>
+                                <div class="row">
+                                    <h6>{{ii.title}}</h6>
+                                </div>
+                                <div class="row">
+                                    <h6>{{i.reading_time}} Minutes</h6>
+                                </div>
+                                {% if i.finished == False %}
+
+                                <div class="row">
+                                    <label>
+                                        <input type="checkbox" id="check" class="filled-in" disabled="disabled" />
+                                        <span></span>
+                                    </label>
+                                    <form action="{{ url_for('check', toreadid = i.id)}}"  method='POST'>
+                                        <input type='submit' class=" btn cyan darken-4 btn-small" id="check" value="check?">
+                                    </form>
+                                </div>
+                                {% else %}
+                                <div class="row">
+                                    <label>
+                                        <input type="checkbox" id="check" class="filled-in" checked="checked" disabled="disabled" />
+                                        <span></span>
+                                    </label>
+                                    <form action="{{ url_for('uncheck', toreadid = i.id)}}" method='POST'>
+                                        <input type='submit' class=" btn cyan darken-4 btn-small" id="uncheck" value="Uncheck?">
+                                    </form>
+                                </div>
+                                {% endif %}
                             </div>
-                        </div>
-                        <!-- BUTTONS -->
-                        <div class="card-action">
-                           <a href="/edittoread/{{i.id}}/"  class="btn cyan darken-4">Edit</a>
-                           <a href="/deletetoread/{{i.id}}/"  class="btn cyan darken-4">Delete</a>
-                        </div>
+                        </form>
                     </div>
-                 
+                </div>
+                <!-- BUTTONS -->
+                <div class="card-action">
+                    <a href="/edittoread/{{i.id}}/" class="btn cyan darken-4">Edit</a>
+                    <a href="/deletetoread/{{i.id}}/{{ii.id}}/" class="btn cyan darken-4">Delete</a>
                 </div>
             </div>
+
         </div>
-           {% endfor %}
-         <br> <br><br><br> <br><br>
+    </div>
+</div>
+{% endif %} 
+{% endfor %} 
+{% endfor %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -111,7 +111,8 @@ def addToRead(id):
 @app.route('/toread/', methods=['GET', 'POST'])
 def showToRead():
     allToRead = session.query(ToRead).order_by(desc(ToRead.created_at))
-    return render_template("toread.html", allToRead=allToRead)
+    allReadings = session.query(Readings)
+    return render_template("toread.html", allToRead=allToRead, allReadings=allReadings)
 
 # Show one to read, id is reading id
 @app.route('/toread/<int:id>/', methods=['GET', 'POST'])
@@ -148,6 +149,29 @@ def deleteToRead(id, readingid):
         return redirect(url_for('showHome'))
     else:
         return render_template("deletetoread.html", id = id, readingid=readingid)
+
+
+@app.route('/check/<int:toreadid>/', methods=['POST'])
+def check(toreadid):
+    if request.method == 'POST':
+        toRead = session.query(ToRead).filter_by(id=toreadid).one()
+        toRead.finished = True
+        session.add(toRead)
+        session.commit()
+        return redirect(url_for('showToRead'))
+
+
+
+
+
+@app.route('/uncheck/<int:toreadid>/', methods=['POST'])
+def uncheck(toreadid):
+    if request.method == 'POST':
+        toRead = session.query(ToRead).filter_by(id=toreadid).one()
+        toRead.finished = False
+        session.add(toRead)
+        session.commit()
+        return redirect(url_for('showToRead'))
 
 
 if __name__ == '__main__':
