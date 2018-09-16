@@ -3,8 +3,8 @@
 ![reading-tracker](imgs/RC.png)
 
 
-An app to track control what you read.
-It allows you to add everything you read with their tags, track them and add a time to read each of them.
+An app to track & control what you read.
+It allows you to add everything you read with their tags, track them and add a time for reading each of them.
 
 - Compatible with Python **3+**.
 
