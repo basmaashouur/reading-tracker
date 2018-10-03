@@ -168,3 +168,29 @@ def gdisconnect():
             json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
+
+
+
+
+
+# Displays the whole Categories
+@app.route('/1/JSON/')
+def categoryJSON():
+    readings = session.query(Readings).filter_by(id=id).one()
+    return jsonify(Catgories=[r.serialize for r in readings])
+
+
+# Displays items for a specific category
+@app.route('/catalog/2/JSON/')
+def restaurantMenuJSON(category_id):
+    allToRead = session.query(ToRead).order_by(desc(ToRead.created_at))
+    allReadings = session.query(Readings)
+    return jsonify(MenuItems=[i.serialize for i in allToRead])
+
+
+# Displays a specific category item.
+@app.route('/3/JSON/')
+def menuItemJSON(category_id, item_id):
+    toRead = session.query(ToRead).filter_by(readings_id=id).one()
+    reading = session.query(Readings).filter_by(id=id).one()
+    return jsonify(item=toRead.serialize)
