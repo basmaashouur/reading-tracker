@@ -51,8 +51,8 @@ def showReadings():
         session.commit()
         return redirect(url_for('showHome'))
     else:
-        #sendTags = [r[0] for r in session.query(Tags.title)]
-        sendTags =["Science", "Math"]
+        sendTags = [r[0] for r in session.query(Tags.title)]
+        #sendTags =["Science", "Math"]
         return render_template("readings.html", dataPy = json.dumps(sendTags))
 
 
